@@ -1,5 +1,5 @@
 # Analysis of liked Spotify songs
-I created this project to help me manage and analyze my liked songs on Spotify using Python. Here, I'll explain how you can do the same using the `LikedSongs.ipynb` Jupyter Notebook.
+I created this project to help me manage and analyze my liked songs on Spotify using Python. I wanted to investigate  Here, I'll explain how you can do the same using the `LikedSongs.ipynb` Jupyter Notebook.
 
 ## Getting Started
 
@@ -13,8 +13,8 @@ I created this project to help me manage and analyze my liked songs on Spotify u
 
 1. Clone my repository:
     ```sh
-    git clone https://github.com/DaRoemer/SpotifySongAnalysis.git
-    cd SpotifySongAnalysis
+    git clone https://github.com/DaRoemer/fav-song-analysis.git
+    cd fav-song-analysis
     ```
 
 2. Install the required Python packages using conda:
