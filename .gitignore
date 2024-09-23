@@ -3,3 +3,6 @@
 
 # Ignore all __pycache__ directories
 __pycache__/
+
+# Ignore the config.json file
+.config.json
