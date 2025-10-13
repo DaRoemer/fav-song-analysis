@@ -6,3 +6,4 @@ __pycache__/
 
 # Ignore the config.json file
 .config.json
+.rapidapi_key.json
