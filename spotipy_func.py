@@ -37,6 +37,7 @@ import spotipy
 import re
 import json
 from spotipy.oauth2 import SpotifyOAuth
+import requests
 
 
 
@@ -315,3 +316,58 @@ def get_tracks_by_names_and_artists(sp: 'spotipy.Spotify', track_names: list, ar
                            'track':    track_items[0]}
             tracks.append(song_format)
     return tracks
+
+
+
+def get_reccobeats_audio_features(track_ids):
+    """
+    Fetches audio features for a list of track IDs from the Reccobeats API.
+    Args:
+        track_ids (list of str): List of track IDs to retrieve audio features for.
+    Returns:
+        dict: JSON response containing audio features for the specified tracks.
+    Raises:
+        requests.exceptions.RequestException: If the HTTP request fails.
+    """
+
+    url = f"https://api.reccobeats.com/v1/audio-features?ids={','.join(track_ids)}"
+    payload={}
+    headers = {
+      'Accept': 'application/json'
+    }
+
+    response = requests.request("GET", url, headers=headers, data=payload)
+
+    return response.json()
+
+def extract_track_info(tracks):
+    """
+    Extracts relevant information from a list of Spotify track items and returns it as a pandas DataFrame.
+    Parameters:
+        tracks (list): A list of dictionaries, each containing a 'track' key with Spotify track metadata.
+    Returns:
+        pandas.DataFrame: A DataFrame containing the following columns for each track:
+            - id: Spotify track ID
+            - name: Track name
+            - artist: Name of the first artist
+            - album: Album name
+            - release_date: Album release date
+            - popularity: Track popularity score
+            - duration_ms: Track duration in milliseconds
+    """
+
+    track_info = []
+    for item in tracks:
+        track = item['track']
+        info = {
+            'id':           track['id'],
+            'name':         track['name'],
+            'artist':       track['artists'][0]['name'],
+            'album':        track['album']['name'],
+            'release_date': track['album']['release_date'],
+            'popularity':   track['popularity'],
+            'duration_ms':  track['duration_ms'],
+            'added_at':     item['added_at']
+        }
+        track_info.append(info)
+    return pd.DataFrame(track_info)
