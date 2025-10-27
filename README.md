@@ -8,6 +8,8 @@ I created this project to help me manage and analyze my liked songs on Spotify u
 - Python 3.x
 - Jupyter Notebook
 - Spotify Developer Account
+- optional: extended streaming history
+    - follow this link https://www.spotify.com/us/account/privacy/
 
 ### Installation
 
